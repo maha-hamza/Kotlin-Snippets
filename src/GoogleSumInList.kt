@@ -27,6 +27,17 @@ fun findSum(list: IntArray, k: Int): IntArray {
     }.flatten().first()
 }
 
+fun findSum2(list: IntArray, k: Int): IntArray {
+    for (outer in list.indices) {
+        for (inner in outer + 1 until list.size) {
+            if (list[outer] + list[inner] == k) {
+                return intArrayOf(list[outer], list[inner])
+            }
+        }
+    }
+    return intArrayOf()
+}
+
 // return boolean
 fun hasSum(list: IntArray, k: Int): Boolean {
     return list.mapIndexed { outerIndex, i ->

@@ -31,15 +31,18 @@ class CombinationIterator(val characters: String, val combinationLength: Int) {
     }
 
     private fun generateCombinations(sb: StringBuilder, index: Int) {
-        if (sb.length == combinationLength) {
-            combinations.add(sb.toString())
-            return
-        }
-
-        for (i in index until characters.length) {
-            sb.append(characters[i])
-            generateCombinations(sb, i + 1)
-            sb.deleteCharAt(sb.length - 1)
+        when (sb.length) {
+            combinationLength -> {
+                combinations.add(sb.toString())
+                return
+            }
+            else -> {
+                for (i in index until characters.length) {
+                    sb.append(characters[i])
+                    generateCombinations(sb, i + 1)
+                    sb.deleteCharAt(sb.length - 1)
+                }
+            }
         }
     }
 }
